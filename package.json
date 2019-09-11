@@ -1,0 +1,20 @@
+{
+  "name": "contactkeeper",
+  "version": "1.0.0",
+  "description": "respository for the contact keeper tutorial from react front to back udemy course",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WilsonNet/contactkeeper.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/WilsonNet/contactkeeper/issues"
+  },
+  "homepage": "https://github.com/WilsonNet/contactkeeper#readme"
+}
