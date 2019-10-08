@@ -11,8 +11,6 @@ const ContactSchema = mongoose.Schema({
   },
   email: {
     type: String,
-    required: true,
-    unique: true
   },
   phone: {
     type: String,
@@ -20,10 +18,6 @@ const ContactSchema = mongoose.Schema({
   type: {
     type: String,
     default: 'personal'
-  },
-  password: {
-    type: String,
-    required: true
   },
   date: {
     type: Date,

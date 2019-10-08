@@ -1,17 +1,18 @@
-const express = require('express');
+const express = require('express')
 const router = express.Router()
 const { check, validationResult } = require('express-validator')
 const auth = require('../middleware/auth.js')
 const User = require('../models/User')
 const Contact = require('../models/Contact')
 
-
 // @route   GET api/contacts
 // @desc    Get all user contacts
 // @access  Private
-router.get('/', auth, async (req, resp)=> {
+router.get('/', auth, async (req, resp) => {
   try {
-    const contacts = await Contact.find({ user: req.user.id }).sort({ date: -1 })
+    const contacts = await Contact.find({ user: req.user.id }).sort({
+      date: -1
+    })
     resp.json(contacts)
   } catch (error) {
     console.error(error.message)
@@ -19,30 +20,57 @@ router.get('/', auth, async (req, resp)=> {
   }
 })
 
-
 // @route   POST api/contacts
 // @desc    Add a contact
 // @access  Private
-router.post('/', [auth, [
-  check('name')
-]], (req, resp)=> {
-  resp.send('Add a contact');
-})
+router.post(
+  '/',
+  [
+    auth,
+    [
+      check('name', 'Name is required')
+        .not()
+        .isEmpty()
+    ]
+  ],
+  async (req, resp) => {
+    const errors = validationResult(req)
+    if (!errors.isEmpty()) {
+      return resp.status(400).json({ errors: errors.array() })
+    }
+
+    const { name, email, phone, type } = req.body
+
+    try {
+      const newContact = new Contact({
+        name,
+        email,
+        phone,
+        type,
+        user: req.user.id
+      })
+
+      const contact = await newContact.save()
+      resp.json(contact)
+    } catch (error) {
+      console.error(error.message)
+      resp.status(500).send({msg: "Internal server error"})
+    }
+  }
+)
 
 // @route   PUT api/contacts/:id
 // @desc    Update a contact
 // @access  Private
-router.put('/:id', (req, resp)=> {
-  resp.send('Update a contact');
+router.put('/:id', (req, resp) => {
+  resp.send('Update a contact')
 })
 
 // @route   DELETE api/contacts/:id
 // @desc    Delete a contact
 // @access  Private
-router.delete('/:id', (req, resp)=> {
-  resp.send('Delete a contact');
+router.delete('/:id', (req, resp) => {
+  resp.send('Delete a contact')
 })
 
-
-
-module.exports = router;
+module.exports = router
