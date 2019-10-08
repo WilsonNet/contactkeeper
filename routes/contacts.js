@@ -9,9 +9,7 @@ const Contact = require('../models/Contact')
 // @route   GET api/contacts
 // @desc    Get all user contacts
 // @access  Private
-router.get('/', [auth, [
-  check('name', 'Name is require').not().isEmpty()
-]], async (req, resp)=> {
+router.get('/', auth, async (req, resp)=> {
   try {
     const contacts = await Contact.find({ user: req.user.id }).sort({ date: -1 })
     resp.json(contacts)
@@ -25,7 +23,9 @@ router.get('/', [auth, [
 // @route   POST api/contacts
 // @desc    Add a contact
 // @access  Private
-router.post('/', auth, (req, resp)=> {
+router.post('/', [auth, [
+  check('name')
+]], (req, resp)=> {
   resp.send('Add a contact');
 })
 
