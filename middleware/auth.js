@@ -9,7 +9,6 @@ module.exports = function(req, resp, next) {
   if(!token) {
     return resp.status(401).json({msg: 'No token, authorization denied'})
   }
-  console.log('tem token')
 
   try {
     const decoded = jwt.verify(token, config.get('jwtSecret'))
