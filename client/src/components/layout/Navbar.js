@@ -10,9 +10,11 @@ export const Navbar = ({ title, icon }) => {
       </h1>
       <ul>
         <li>
-          <Link to='/'>Home</Link>
+          <Link to="/">Home</Link>
         </li>
-        <Link to="/about">About</Link>
+        <li>
+          <Link to="/about">About</Link>
+        </li>
       </ul>
     </div>
   );
