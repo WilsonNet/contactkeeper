@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 export const Navbar = ({ title, icon }) => {
   return (
@@ -7,6 +8,12 @@ export const Navbar = ({ title, icon }) => {
       <h1>
         <i className={icon} /> {title}
       </h1>
+      <ul>
+        <li>
+          <Link to='/'>Home</Link>
+        </li>
+        <Link to="/about">About</Link>
+      </ul>
     </div>
   );
 };
@@ -20,4 +27,3 @@ Navbar.defaultProps = {
   title: 'Contact Keeper',
   icon: 'fas fa-id-card-alt'
 };
-
