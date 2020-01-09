@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const ContactItem = ({ contacts }) => {
+const ContactItem = ({contact}) => {
   const { id, name, email, phone, type } = contact;
 
   return (
@@ -21,8 +21,6 @@ const ContactItem = ({ contacts }) => {
   );
 };
 
-ContactItem.propTypes = {
-  contacts: PropTypes.object.isRequired,
-};
+
 
 export default ContactItem;
