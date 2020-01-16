@@ -10,18 +10,28 @@ const AlertState = props => {
   const [state, dispatch] = useReducer(alertReducer, initialState);
 
   // Set Alert
-  const setAlert = (msg, type) => {
+  const setAlert = (msg, type, timeout = 5000) => {
     const id = uuid.v4();
+    dispatch({
+      type: SET_ALERT,
+      payload: { msg, type, id }
+    });
+
+    setTimeout(
+      () =>
+        dispatch({
+          type: REMOVE_ALERT,
+          payload: id
+        }),
+      timeout
+    );
   };
 
   return (
     <AlertContext.Provider
       value={{
-        token: state.token,
-        isAuthenticated: state.isAuthenticated,
-        loading: state.loading,
-        user: state.user,
-        error: state.error
+        alerts: state,
+        setAlert
       }}
     >
       {props.children}
