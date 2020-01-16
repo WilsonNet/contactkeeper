@@ -4,7 +4,7 @@ import ContactContext from '../../context/contact/contactContext';
 const ContactFilter = () => {
   const contactContext = useContext(ContactContext);
   const text = useRef('');
-  const { filterContacts, clearFilter, filtered } = contactContext
+  const { filterContacts, clearFilter, filtered } = contactContext;
   useEffect(() => {
     if (filtered === null) {
       text.current.value = '';
@@ -13,9 +13,9 @@ const ContactFilter = () => {
 
   const onChange = e => {
     if (text.current.value !== '') {
-      contactContext.filterContacts(e.target.value);
+      filterContacts(e.target.value);
     } else {
-      contactContext.clearFilter();
+      clearFilter();
     }
   };
   return (
