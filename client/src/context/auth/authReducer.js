@@ -1,5 +1,5 @@
 import {
-  REGISTER_SUCESS,
+  REGISTER_SUCCESS,
   REGISTER_FAIL,
   USER_LOADED,
   AUTH_ERROR,
@@ -11,7 +11,7 @@ import {
 
 export default (state, action) => {
   switch (action.type) {
-    case REGISTER_SUCESS:
+    case REGISTER_SUCCESS:
       console.log('Payload', action.payload);
       localStorage.setItem('token', action.payload.token);
     case REGISTER_FAIL:
