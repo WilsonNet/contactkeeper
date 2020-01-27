@@ -21,6 +21,7 @@ export default (state, action) => {
       };
     case REGISTER_FAIL:
       localStorage.removeItem('token');
+      console.log("TCL: REGISTER_FAIL action.payload", action.payload)
       return {
         ...state,
         token: null,
