@@ -36,9 +36,10 @@ const AuthState = props => {
 
     try {
       const res = await axios.post('/api/users', formData, config);
+      console.log("TCL: res", res)
       dispatch({
         type: REGISTER_SUCCESS,
-        payloard: res.data
+        payload: res.data
       });
     } catch (error) {
       dispatch({
