@@ -25,7 +25,12 @@ const AuthState = props => {
   const [state, dispatch] = useReducer(authReducer, initialState);
 
   // Load User
-  const loadUser = () => console.log('Logging user');
+  const loadUser = async () => {
+    // TODO Load tken into global headers
+    try {
+      const res = await axios.get('/api/auth');
+    } catch (error) {}
+  };
   // Register User
   const register = async formData => {
     const config = {
@@ -52,7 +57,7 @@ const AuthState = props => {
   // Logout
   const logout = () => console.log('logout');
   // Clear Errors
-  const clearErrors = () => dispatch({type: CLEAR_ERRORS});
+  const clearErrors = () => dispatch({ type: CLEAR_ERRORS });
 
   return (
     <AuthContext.Provider
