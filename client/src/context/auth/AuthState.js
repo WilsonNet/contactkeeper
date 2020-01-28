@@ -9,7 +9,7 @@ import {
   REGISTER_FAIL,
   USER_LOADED,
   AUTH_ERROR,
-  LOGIN_SUCESS,
+  LOGIN_SUCCESS,
   LOGIN_FAIL,
   LOGOUT,
   CLEAR_ERRORS
@@ -46,6 +46,29 @@ const AuthState = props => {
     };
 
     try {
+      const res = await axios.post('/api/auth', formData, config);
+      dispatch({
+        type: LOGIN_SUCCESS,
+        payload: res.data
+      });
+
+      loadUser();
+    } catch (error) {
+      dispatch({
+        type: REGISTER_FAIL,
+        payload: error.response.data.msg
+      });
+    }
+  };
+  // Login User
+  const loginUser = async formData => {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    };
+
+    try {
       const res = await axios.post('/api/users', formData, config);
       dispatch({
         type: REGISTER_SUCCESS,
@@ -60,8 +83,6 @@ const AuthState = props => {
       });
     }
   };
-  // Login User
-  const loginUser = () => console.log('Login user');
   // Logout
   const logout = () => console.log('logout');
   // Clear Errors
