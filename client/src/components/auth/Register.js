@@ -99,8 +99,6 @@ const Register = (props) => {
           type='submit'
           value='Register'
           className='btn btn-primary btn-block'
-          minLength='6'
-          required
         />
       </form>
     </div>
